@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Azure.CognitiveServices.Personalizer;
@@ -70,6 +71,8 @@ namespace Personalizer
             };
 
             Program program = new Program();
+            program.LoadActions(@"D:\LabFiles\AAI-008\Data\Actions.json");
+            program.LoadFeatures(@"D:\LabFiles\AAI-008\Data\Features.json");
             program.Personalizer.Train(simple);
             // Ensures no exceptions are thrown.
         }
@@ -79,10 +82,54 @@ namespace Personalizer
         public void TestTrainingFile()
         {
             Program program = new Program();
+            program.LoadActions(@"D:\LabFiles\AAI-008\Data\Actions.json");
+            program.LoadFeatures(@"D:\LabFiles\AAI-008\Data\Features.json");
             program.TrainingFile(@"D:\LabFiles\AAI-008\Data\Training.json");
             // Ensures no exceptions are thrown.
         }
 #endif
+
+#if TestInterctiveTraining
+        [TestMethod]
+        public void TestInterctiveTraining()
+        {
+            Program program = new Program();
+            program.LoadActions(@"D:\LabFiles\AAI-008\Data\Actions.json");
+            program.LoadFeatures(@"D:\LabFiles\AAI-008\Data\Features.json");
+            string[] select = new string[] { "Texture", "Color" };
+            string[] exclude = new string[] { "Happy Sample" };
+            using (MemoryStream source = new MemoryStream())
+            {
+                using (MemoryStream sink = new MemoryStream())
+                {
+
+                    StreamWriter result = new StreamWriter(sink, Console.OutputEncoding);
+                    Console.SetOut(result);
+
+                    StreamWriter writer = new StreamWriter(source, Console.OutputEncoding);
+                    writer.Write('1'); // Rough
+                    writer.Write('2'); // Pastel
+                    writer.Write('Y');
+                    writer.Write('Q');
+                    writer.Flush();
+                    source.Seek(0, SeekOrigin.Begin);
+
+                    TextReader reader = new StreamReader(source, Console.InputEncoding);
+                    Console.SetIn(reader);
+
+                    program.InteractiveTraining(select, exclude);
+
+                    sink.Seek(0, SeekOrigin.Begin);
+                    StreamReader output = new StreamReader(sink, Console.InputEncoding);
+                    string value = output.ReadLine();
+                    while(value != null) {
+                        value = output.ReadLine();
+                    }
+                }
+            }
+        }
+#endif
+
         private static string GetConfigString(IConfiguration config, string key)
         {
             string result = config[key];
