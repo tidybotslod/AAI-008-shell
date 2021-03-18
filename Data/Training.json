@@ -1,0 +1,45 @@
+[
+
+    {
+        "Name": "case 1",
+        "Features":  [
+            { "Location": "Kitchen" },
+            { "Tone": "Bright" }
+        ],
+        "Exclude": [
+            "Sleepy Sample"
+        ],
+        "Expected": "Happy Sample"
+    },
+    {
+        "Name": "case 2",
+        "Features":  [
+            { "Location": "Bedroom" },
+            { "Tone": "Dark" }
+        ],
+        "Exclude": [
+            "Happy Sample"
+        ],
+        "Expected": "Sleepy Sample"
+    },
+    {
+        "Name": "case 3",
+        "Features":  [
+            { "Location": "Living Room" },
+            { "Tone": "Muted" }
+        ],
+        "Exclude": [
+            "Happy Sample"
+        ],
+        "Expected": "Seductive Sample"
+    },
+    {
+        "Name": "case 4",
+        "Features":  [
+            { "Location": "Famly room" },
+            { "Tone": "Muted" }
+        ],
+        "Expected": "Comfortable Sample"
+    }
+]
+

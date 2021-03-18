@@ -1,0 +1,51 @@
+[
+  {
+    "Name": "Location",
+    "Prompt": "What room is this for?",
+    "Values":     [
+      "Living room",
+      "Bedroom",
+      "Family room",
+      "Kitchen"
+    ]
+  },
+  {
+    "Name": "Texture",
+    "Prompt": "What texture would you prefer?",
+    "Values": [
+      "Rough",
+      "Smooth",
+      "Silky",
+      "Shiny",
+      "Fuzzy"
+    ]
+  },
+  {
+    "Name": "Color",
+    "Prompt": "What color scheme do you want?",
+    "Values": [
+      "Pastel",
+      "Primary",
+      "Grey"
+    ]
+  },
+  {
+    "Name": "Tone",
+    "Prompt": "What color tone would be best?",
+    "Values": [
+      "Bright",
+      "Muted",
+      "Dark"
+    ]
+  },
+  {
+    "Name": "Quality",
+    "Prompt": "What Quality of material would be best?",
+    "Values" : [
+      "Expensive",
+      "Moderate",
+      "Cheaper"
+    ]
+  }
+]
+

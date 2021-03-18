@@ -1,0 +1,56 @@
+[
+  {
+    "Id": "Seductive Sample",
+    "Features": [
+      {
+        "Texture": "Silky",
+        "Tone": "Muted",
+        "Color": "Pastel"
+      },
+      {
+        "Expense": "High"
+      }
+    ]
+  },
+  {
+    "Id": "Happy Sample",
+    "Features": [
+      {
+        "Texture": "Shiny",
+        "Tone": "Bright",
+        "Color": "Primary"
+      },
+      {
+        "Expense": "Medium"
+      }
+    ]
+  },
+  {
+    "Id": "Comfortable Sample",
+    "Features": [
+      {
+        "Texture": "Smooth",
+        "Tone": "Muted",
+        "Color": "Primary"
+      },
+      {
+        "Expense": "Low"
+      }
+    ]
+  },
+  {
+    "Id": "Sleepy Sample",
+    "Features": [
+      {
+        "Texture": "Fuzzy",
+        "Tone": "Dark",
+        "Color": "Grey"
+      },
+      {
+        "Expense": "Low"
+      }
+    ]
+  }
+]
+
+
