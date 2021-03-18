@@ -40,7 +40,7 @@ namespace Personalizer
         public void TestFeatures()
         {
             Program program = new Program();
-            program.LoadFeatures("D:\LabFiles\AAI-008\Data\Features.json");
+            program.LoadFeatures(@"D:\LabFiles\AAI-008\Data\Features.json");
             Assert.AreEqual(5, program.Personalizer.Features.Length);
         }
 #endif
@@ -49,7 +49,7 @@ namespace Personalizer
         public void TestActions()
         {
             Program program = new Program();
-            program.LoadActions("D:\LabFiles\AAI-008\Data\Actions.json");
+            program.LoadActions(@"D:\LabFiles\AAI-008\Data\Actions.json");
             Assert.AreEqual(4, program.Personalizer.Actions.Count);
 
         }
@@ -58,11 +58,12 @@ namespace Personalizer
         [TestMethod]
         public void TestTraining()
         {
-            TrainingCase simple = new TrainingCase[]
+            TrainingCase[] simple = new TrainingCase[]
             {
+                new TrainingCase
                 {
                     Name = "SimpleCase",
-                    Features = new object[] { new { Location = "Bedroom", Color "Pastel"} },
+                    Features = new object[] { new { Location = "Bedroom", Color = "Pastel"} },
                     Exclude = new string[] { "Comfortable Sample" },
                     Expected = "Sleepy Sample"
                 }
@@ -78,7 +79,7 @@ namespace Personalizer
         public void TestTrainingFile()
         {
             Program program = new Program();
-            program.Personalizer.TrainFile("D:\LabFiles\AAI-008\Data\Training.json");
+            program.TrainingFile(@"D:\LabFiles\AAI-008\Data\Training.json");
             // Ensures no exceptions are thrown.
         }
 #endif

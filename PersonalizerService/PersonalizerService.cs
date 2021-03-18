@@ -7,6 +7,9 @@ namespace AAI
 {
     public partial class PersonalizerService
     {
+        public void Train(TrainingCase[] cases)
+        {
 
+        }
     }
 }
