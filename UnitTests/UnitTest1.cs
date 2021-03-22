@@ -103,27 +103,37 @@ namespace Personalizer
                 using (MemoryStream sink = new MemoryStream())
                 {
 
-                    StreamWriter result = new StreamWriter(sink, Console.OutputEncoding);
-                    Console.SetOut(result);
+                    try {
+                        StreamWriter result = new StreamWriter(sink, Console.OutputEncoding);
+                        Console.SetOut(result);
 
-                    StreamWriter writer = new StreamWriter(source, Console.OutputEncoding);
-                    writer.Write('1'); // Rough
-                    writer.Write('2'); // Pastel
-                    writer.Write('Y');
-                    writer.Write('Q');
-                    writer.Flush();
-                    source.Seek(0, SeekOrigin.Begin);
+                        StreamWriter writer = new StreamWriter(source, Console.OutputEncoding);
+                        writer.Write('1'); // Rough
+                        writer.Write('2'); // Pastel
+                        writer.Write('Y');
+                        writer.Write('Q');
+                        writer.Flush();
+                        source.Seek(0, SeekOrigin.Begin);
 
-                    TextReader reader = new StreamReader(source, Console.InputEncoding);
-                    Console.SetIn(reader);
+                        TextReader reader = new StreamReader(source, Console.InputEncoding);
+                        Console.SetIn(reader);
 
-                    program.InteractiveTraining(select, exclude);
+                        program.InteractiveTraining(select, exclude);
 
-                    sink.Seek(0, SeekOrigin.Begin);
-                    StreamReader output = new StreamReader(sink, Console.InputEncoding);
-                    string value = output.ReadLine();
-                    while(value != null) {
-                        value = output.ReadLine();
+                        sink.Seek(0, SeekOrigin.Begin);
+                        StreamReader output = new StreamReader(sink, Console.InputEncoding);
+                        string value = output.ReadLine();
+                        while(value != null) {
+                            value = output.ReadLine();
+                        }
+                    }
+                    finally
+                    {
+                        StreamReader reset = new StreamReader(Console.OpenStandardInput());
+                        Console.SetIn(reset);
+
+                        StreamWriter resetOut = new StreamWriter(Console.OpenStandardOutput());
+                        Console.SetOut(resetOut);
                     }
                 }
             }
